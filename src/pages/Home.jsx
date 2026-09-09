@@ -5,7 +5,6 @@ import {
   FiChevronRight,
   FiClock,
   FiFilter,
-  FiMapPin,
   FiSearch,
   FiSliders,
   FiStar,
@@ -64,7 +63,11 @@ export default function Home({ navigate, onProduct }) {
       const ratingMatch =
         Number(pizza.rating || 0) >= ratingFilter;
 
-      return categoryMatch && searchMatch && ratingMatch;
+      return (
+        categoryMatch &&
+        searchMatch &&
+        ratingMatch
+      );
     });
 
     if (sortBy === "rating") {
@@ -127,7 +130,7 @@ export default function Home({ navigate, onProduct }) {
   };
 
   /* =========================================================
-     SCROLL HELPERS
+     SCROLL TO MENU
   ========================================================= */
 
   const scrollToMenu = () => {
@@ -145,6 +148,10 @@ export default function Home({ navigate, onProduct }) {
     });
   };
 
+  /* =========================================================
+     CATEGORY CHANGE
+  ========================================================= */
+
   const handleCategoryChange = (category) => {
     setActiveCategory(category);
 
@@ -161,6 +168,10 @@ export default function Home({ navigate, onProduct }) {
       });
     }, 60);
   };
+
+  /* =========================================================
+     VIEW ALL
+  ========================================================= */
 
   const handleViewAll = () => {
     setActiveCategory("pizzas");
@@ -189,47 +200,6 @@ export default function Home({ navigate, onProduct }) {
       <Header navigate={navigate} />
 
       <main className="w-full">
-
-        {/* ===================================================
-            DELIVERY LOCATION
-        =================================================== */}
-
-        <section className="px-4 pt-2">
-          <button
-            type="button"
-            onClick={() =>
-              alert(
-                "Location selection will be available during checkout."
-              )
-            }
-            className="flex w-full items-center gap-3 rounded-[18px] border border-[#eadfd3] bg-white p-3 shadow-sm transition active:scale-[0.99]"
-          >
-            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#fff0e8] text-[#ef3e32]">
-              <FiMapPin size={18} />
-            </div>
-
-            <div className="min-w-0 flex-1 text-left">
-              <div className="flex items-center gap-2">
-                <p className="text-[9px] font-extrabold uppercase tracking-[0.12em] text-[#ef3e32]">
-                  Delivering to
-                </p>
-
-                <span className="rounded-full bg-[#eaf8ef] px-2 py-0.5 text-[7px] font-bold text-[#31905b]">
-                  AVAILABLE
-                </span>
-              </div>
-
-              <p className="mt-1 truncate text-[12px] font-extrabold text-[#29231f]">
-                Home · Your delivery location
-              </p>
-            </div>
-
-            <FiChevronRight
-              size={16}
-              className="flex-shrink-0 text-[#aaa098]"
-            />
-          </button>
-        </section>
 
         {/* ===================================================
             HERO
@@ -338,6 +308,7 @@ export default function Home({ navigate, onProduct }) {
                   <FiX size={12} />
                 </button>
               )}
+
             </div>
 
             <button
@@ -459,6 +430,7 @@ export default function Home({ navigate, onProduct }) {
             ))}
 
           </div>
+
         </section>
 
         {/* ===================================================
@@ -606,7 +578,7 @@ export default function Home({ navigate, onProduct }) {
         </section>
 
         {/* ===================================================
-            DEALS
+            TODAY'S OFFERS
         =================================================== */}
 
         <section className="mt-9">
@@ -803,9 +775,7 @@ export default function Home({ navigate, onProduct }) {
               }
               className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-[#fff0eb] text-[#ef3e32] transition active:scale-90"
             >
-              <FiChevronRight
-                size={16}
-              />
+              <FiChevronRight size={16} />
             </button>
 
           </motion.div>
@@ -870,11 +840,7 @@ export default function Home({ navigate, onProduct }) {
               className="fixed bottom-0 left-1/2 z-[100] w-full max-w-[430px] -translate-x-1/2 rounded-t-[30px] bg-[#fff9f0] p-5 shadow-2xl"
             >
 
-              {/* HANDLE */}
-
               <div className="mx-auto h-1.5 w-12 rounded-full bg-[#d8cec5]" />
-
-              {/* HEADER */}
 
               <div className="mt-5 flex items-center justify-between">
 
@@ -1005,7 +971,7 @@ export default function Home({ navigate, onProduct }) {
 
               </div>
 
-              {/* BUTTONS */}
+              {/* ACTION BUTTONS */}
 
               <div className="mt-7 flex gap-3">
 
@@ -1022,9 +988,7 @@ export default function Home({ navigate, onProduct }) {
                 <button
                   type="button"
                   onClick={() =>
-                    setFilterOpen(
-                      false
-                    )
+                    setFilterOpen(false)
                   }
                   className="flex-[1.5] rounded-[17px] bg-[#ef3e32] py-3.5 text-xs font-extrabold text-white shadow-lg shadow-red-200 transition active:scale-[0.98]"
                 >
