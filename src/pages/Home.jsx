@@ -64,11 +64,7 @@ export default function Home({ navigate, onProduct }) {
       const ratingMatch =
         Number(pizza.rating || 0) >= ratingFilter;
 
-      return (
-        categoryMatch &&
-        searchMatch &&
-        ratingMatch
-      );
+      return categoryMatch && searchMatch && ratingMatch;
     });
 
     if (sortBy === "rating") {
@@ -131,7 +127,7 @@ export default function Home({ navigate, onProduct }) {
   };
 
   /* =========================================================
-     SCROLL TO MENU
+     SCROLL HELPERS
   ========================================================= */
 
   const scrollToMenu = () => {
@@ -149,10 +145,6 @@ export default function Home({ navigate, onProduct }) {
     });
   };
 
-  /* =========================================================
-     CATEGORY CHANGE
-  ========================================================= */
-
   const handleCategoryChange = (category) => {
     setActiveCategory(category);
 
@@ -169,10 +161,6 @@ export default function Home({ navigate, onProduct }) {
       });
     }, 60);
   };
-
-  /* =========================================================
-     VIEW ALL
-  ========================================================= */
 
   const handleViewAll = () => {
     setActiveCategory("pizzas");
@@ -231,9 +219,8 @@ export default function Home({ navigate, onProduct }) {
                 </span>
               </div>
 
-              {/* LOCATION */}
               <p className="mt-1 truncate text-[12px] font-extrabold text-[#29231f]">
-                MG Road, Bengaluru 560001
+                Home · Your delivery location
               </p>
             </div>
 
@@ -619,7 +606,7 @@ export default function Home({ navigate, onProduct }) {
         </section>
 
         {/* ===================================================
-            TODAY'S OFFERS
+            DEALS
         =================================================== */}
 
         <section className="mt-9">
@@ -883,7 +870,11 @@ export default function Home({ navigate, onProduct }) {
               className="fixed bottom-0 left-1/2 z-[100] w-full max-w-[430px] -translate-x-1/2 rounded-t-[30px] bg-[#fff9f0] p-5 shadow-2xl"
             >
 
+              {/* HANDLE */}
+
               <div className="mx-auto h-1.5 w-12 rounded-full bg-[#d8cec5]" />
+
+              {/* HEADER */}
 
               <div className="mt-5 flex items-center justify-between">
 
@@ -1014,7 +1005,7 @@ export default function Home({ navigate, onProduct }) {
 
               </div>
 
-              {/* ACTION BUTTONS */}
+              {/* BUTTONS */}
 
               <div className="mt-7 flex gap-3">
 
