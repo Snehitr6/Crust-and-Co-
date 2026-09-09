@@ -1,0 +1,1485 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+
+@import "tailwindcss";
+
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  min-width: 320px;
+  margin: 0;
+  padding: 0;
+
+  scroll-behavior: smooth;
+  scroll-padding-top: 82px;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+body {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+
+  margin: 0;
+  padding: 0;
+
+  background: #fff8ed;
+  color: #202020;
+
+  font-family: "DM Sans", sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+
+  overflow-x: clip;
+}
+
+/* =========================================================
+   APP FRAME
+========================================================= */
+
+.crust-app-frame {
+  position: relative;
+
+  width: 100%;
+  max-width: 430px;
+
+  min-height: 100vh;
+
+  margin: 0 auto;
+  padding: 0;
+
+  overflow-x: clip;
+
+  background: #fff8ed;
+
+  isolation: isolate;
+}
+
+/* =========================================================
+   GLOBAL ELEMENTS
+========================================================= */
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible {
+  outline: 2px solid rgba(239, 62, 50, 0.35);
+  outline-offset: 2px;
+}
+
+input,
+textarea,
+select {
+  outline: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+::selection {
+  background: #ef3e32;
+  color: white;
+}
+
+/* =========================================================
+   HIDE ALL SCROLLBARS
+========================================================= */
+
+.hide-scrollbar,
+.overflow-x-auto,
+.overflow-y-auto,
+.overflow-auto {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.hide-scrollbar::-webkit-scrollbar,
+.overflow-x-auto::-webkit-scrollbar,
+.overflow-y-auto::-webkit-scrollbar,
+.overflow-auto::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* =========================================================
+   SMOOTH SCROLL
+========================================================= */
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+main {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+section {
+  width: 100%;
+  max-width: 100%;
+}
+
+main,
+section,
+header,
+footer,
+article {
+  min-width: 0;
+}
+
+/* =========================================================
+   TEXT OVERFLOW
+========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  overflow-wrap: break-word;
+}
+
+/* =========================================================
+   SAFE AREA
+========================================================= */
+
+@supports (padding: env(safe-area-inset-bottom)) {
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* =========================================================
+   DESKTOP APP ALIGNMENT
+========================================================= */
+
+@media (min-width: 431px) {
+  body {
+    background: #eee8e0;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+
+    margin: 0;
+    padding: 0;
+
+    overflow-x: clip;
+  }
+
+  .crust-app-frame {
+    width: 430px;
+    max-width: 430px;
+
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+    background: #fff8ed;
+
+    box-shadow:
+      0 0 0 1px rgba(60, 40, 25, 0.025),
+      0 0 50px rgba(43, 30, 20, 0.08);
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 430px) {
+  .crust-app-frame {
+    width: 100%;
+    max-width: 430px;
+  }
+}
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 340px) {
+  .grid {
+    gap: 8px;
+  }
+
+  body {
+    font-size: 14px;
+  }
+}
+
+/* =========================================================
+   FIXED HEADER
+========================================================= */
+
+.crust-fixed-top {
+  position: fixed;
+
+  top: 0;
+  left: 50%;
+
+  z-index: 70;
+
+  width: 100%;
+  max-width: 430px;
+
+  margin: 0;
+
+  transform: translateX(-50%);
+
+  background: rgba(255, 248, 237, 0.96);
+
+  border-bottom: 1px solid rgba(234, 223, 211, 0.85);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  will-change: transform;
+}
+
+/* =========================================================
+   FIXED BOTTOM NAV
+========================================================= */
+
+.crust-fixed-bottom {
+  position: fixed;
+
+  left: 50%;
+  bottom: 0;
+
+  z-index: 70;
+
+  width: 100%;
+  max-width: 430px;
+
+  margin: 0;
+
+  transform: translateX(-50%);
+
+  border-top: 1px solid #eadfd3;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  box-shadow:
+    0 -8px 25px rgba(43, 30, 20, 0.07);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.crust-fixed-overlay {
+  position: fixed;
+
+  top: 0;
+  bottom: 0;
+
+  left: 50%;
+
+  z-index: 100;
+
+  width: 100%;
+  max-width: 430px;
+
+  margin: 0;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  transform: translateX(-50%);
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.crust-fixed-overlay::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================================================
+   DRAWER
+========================================================= */
+
+.crust-fixed-left-drawer {
+  position: fixed;
+
+  top: 0;
+  bottom: 0;
+
+  left: calc(50% - 215px);
+
+  z-index: 90;
+
+  width: min(88vw, 375px);
+  max-width: 375px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  margin: 0;
+
+  background: #fff8ed;
+
+  box-shadow:
+    10px 0 40px rgba(0, 0, 0, 0.12);
+
+  will-change: transform;
+}
+
+@media (max-width: 430px) {
+  .crust-fixed-left-drawer {
+    left: 0;
+    width: min(88vw, 375px);
+  }
+}
+
+/* =========================================================
+   =========================================================
+   ADVANCED ANIMATION ENGINE
+   =========================================================
+========================================================= */
+
+/* =========================================================
+   PAGE ENTER
+========================================================= */
+
+@keyframes crust-page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.992);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.crust-page-enter {
+  animation:
+    crust-page-enter
+    0.45s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+/* =========================================================
+   SECTION REVEAL
+========================================================= */
+
+@keyframes crust-section-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(3px);
+  }
+
+  70% {
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.crust-section-reveal {
+  animation:
+    crust-section-reveal
+    0.7s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+/* =========================================================
+   STAGGERED REVEAL
+========================================================= */
+
+.crust-stagger > * {
+  opacity: 0;
+  animation:
+    crust-stagger-item
+    0.55s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+}
+
+.crust-stagger > *:nth-child(1) {
+  animation-delay: 0.04s;
+}
+
+.crust-stagger > *:nth-child(2) {
+  animation-delay: 0.09s;
+}
+
+.crust-stagger > *:nth-child(3) {
+  animation-delay: 0.14s;
+}
+
+.crust-stagger > *:nth-child(4) {
+  animation-delay: 0.19s;
+}
+
+.crust-stagger > *:nth-child(5) {
+  animation-delay: 0.24s;
+}
+
+.crust-stagger > *:nth-child(6) {
+  animation-delay: 0.29s;
+}
+
+.crust-stagger > *:nth-child(7) {
+  animation-delay: 0.34s;
+}
+
+.crust-stagger > *:nth-child(8) {
+  animation-delay: 0.39s;
+}
+
+@keyframes crust-stagger-item {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+   FLOAT
+========================================================= */
+
+@keyframes crust-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -7px, 0);
+  }
+}
+
+.crust-float {
+  animation:
+    crust-float
+    4s
+    ease-in-out
+    infinite;
+}
+
+/* =========================================================
+   GENTLE FLOAT
+========================================================= */
+
+@keyframes crust-gentle-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.crust-gentle-float {
+  animation:
+    crust-gentle-float
+    3.5s
+    ease-in-out
+    infinite;
+}
+
+/* =========================================================
+   PULSE
+========================================================= */
+
+@keyframes crust-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+.crust-pulse {
+  animation:
+    crust-pulse
+    2.5s
+    ease-in-out
+    infinite;
+}
+
+/* =========================================================
+   PREMIUM GLOW
+========================================================= */
+
+@keyframes crust-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 8px 25px rgba(239, 62, 50, 0.08);
+  }
+
+  50% {
+    box-shadow:
+      0 14px 38px rgba(239, 62, 50, 0.2);
+  }
+}
+
+.crust-glow {
+  animation:
+    crust-glow
+    3s
+    ease-in-out
+    infinite;
+}
+
+/* =========================================================
+   RED GLOW
+========================================================= */
+
+.crust-red-glow {
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s ease,
+    filter 0.28s ease;
+}
+
+.crust-red-glow:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 10px 25px rgba(239, 62, 50, 0.22),
+    0 0 0 4px rgba(239, 62, 50, 0.05);
+
+  filter: brightness(1.02);
+}
+
+.crust-red-glow:active {
+  transform: scale(0.95);
+}
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.crust-button {
+  position: relative;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+.crust-button::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+  left: -120%;
+
+  width: 55%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+
+  transition: left 0.55s ease;
+
+  pointer-events: none;
+}
+
+.crust-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.02);
+}
+
+.crust-button:hover::after {
+  left: 130%;
+}
+
+.crust-button:active {
+  transform: scale(0.94);
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.crust-card {
+  position: relative;
+
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.crust-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 18px 42px rgba(48, 32, 20, 0.12);
+}
+
+/* =========================================================
+   CARD SHINE
+========================================================= */
+
+.crust-card::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -130%;
+
+  width: 70%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.18),
+    transparent
+  );
+
+  transform: skewX(-18deg);
+
+  pointer-events: none;
+}
+
+.crust-card:hover::after {
+  animation:
+    crust-card-shine
+    0.7s
+    ease
+    forwards;
+}
+
+@keyframes crust-card-shine {
+  from {
+    left: -130%;
+  }
+
+  to {
+    left: 140%;
+  }
+}
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.crust-image {
+  transition:
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.4s ease;
+}
+
+.crust-image:hover {
+  transform: scale(1.06);
+}
+
+/* =========================================================
+   HERO IMAGE
+========================================================= */
+
+@keyframes crust-hero-float {
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translateY(-5px)
+      scale(1.015);
+  }
+}
+
+.crust-hero-float {
+  animation:
+    crust-hero-float
+    5s
+    ease-in-out
+    infinite;
+}
+
+/* =========================================================
+   SHIMMER
+========================================================= */
+
+@keyframes crust-shimmer {
+  0% {
+    transform: translateX(-130%);
+  }
+
+  100% {
+    transform: translateX(140%);
+  }
+}
+
+.crust-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.crust-shimmer::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  width: 45%;
+
+  transform: translateX(-130%);
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+
+  animation:
+    crust-shimmer
+    2.4s
+    ease-in-out
+    infinite;
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.crust-category-active {
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s ease,
+    background 0.28s ease;
+}
+
+.crust-category-active:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* =========================================================
+   CART POP
+========================================================= */
+
+@keyframes crust-cart-pop {
+  0% {
+    transform: scale(0.55);
+    opacity: 0;
+  }
+
+  45% {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+
+  70% {
+    transform: scale(0.9);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.crust-cart-pop {
+  animation:
+    crust-cart-pop
+    0.5s
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =========================================================
+   HEART POP
+========================================================= */
+
+@keyframes crust-heart-pop {
+  0% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform:
+      scale(1.4)
+      rotate(-8deg);
+  }
+
+  55% {
+    transform:
+      scale(0.82)
+      rotate(5deg);
+  }
+
+  80% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    transform:
+      scale(1)
+      rotate(0);
+  }
+}
+
+.crust-heart-pop {
+  animation:
+    crust-heart-pop
+    0.45s
+    ease-out;
+}
+
+/* =========================================================
+   SUCCESS
+========================================================= */
+
+@keyframes crust-success {
+  0% {
+    transform:
+      scale(0)
+      rotate(-30deg);
+
+    opacity: 0;
+  }
+
+  50% {
+    transform:
+      scale(1.2)
+      rotate(6deg);
+
+    opacity: 1;
+  }
+
+  75% {
+    transform:
+      scale(0.94)
+      rotate(-2deg);
+  }
+
+  100% {
+    transform:
+      scale(1)
+      rotate(0);
+  }
+}
+
+.crust-success {
+  animation:
+    crust-success
+    0.7s
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+@keyframes crust-particle {
+  0% {
+    opacity: 1;
+
+    transform:
+      translate(0, 0)
+      scale(1);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate(
+        var(--particle-x, 0),
+        var(--particle-y, -25px)
+      )
+      scale(0);
+  }
+}
+
+.crust-particle {
+  animation:
+    crust-particle
+    0.7s
+    ease-out
+    forwards;
+}
+
+/* =========================================================
+   NAVIGATION ACTIVE
+========================================================= */
+
+@keyframes crust-nav-active {
+  0% {
+    transform:
+      translateY(4px)
+      scale(0.8);
+
+    opacity: 0;
+  }
+
+  60% {
+    transform:
+      translateY(-2px)
+      scale(1.08);
+
+    opacity: 1;
+  }
+
+  100% {
+    transform:
+      translateY(0)
+      scale(1);
+
+    opacity: 1;
+  }
+}
+
+.crust-nav-active {
+  animation:
+    crust-nav-active
+    0.4s
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =========================================================
+   LOCATION PULSE
+========================================================= */
+
+@keyframes crust-location-pulse {
+  0% {
+    box-shadow:
+      0 0 0 0
+      rgba(239, 62, 50, 0.25);
+  }
+
+  70% {
+    box-shadow:
+      0 0 0 10px
+      rgba(239, 62, 50, 0);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0
+      rgba(239, 62, 50, 0);
+  }
+}
+
+.crust-location-pulse {
+  animation:
+    crust-location-pulse
+    2.2s
+    infinite;
+}
+
+/* =========================================================
+   MODAL BACKDROP
+========================================================= */
+
+.crust-backdrop {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.crust-input {
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.crust-input:focus {
+  outline: none;
+
+  border-color: #ef3e32;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(239, 62, 50, 0.08);
+
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   OFFER / DEAL CARD
+========================================================= */
+
+@keyframes crust-offer-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.crust-offer-float {
+  animation:
+    crust-offer-float
+    3.5s
+    ease-in-out
+    infinite;
+}
+
+/* =========================================================
+   PRICE CHANGE
+========================================================= */
+
+@keyframes crust-price-pop {
+  0% {
+    opacity: 0;
+    transform:
+      scale(0.85)
+      translateY(4px);
+  }
+
+  60% {
+    opacity: 1;
+    transform:
+      scale(1.08)
+      translateY(-1px);
+  }
+
+  100% {
+    transform:
+      scale(1)
+      translateY(0);
+  }
+}
+
+.crust-price-pop {
+  animation:
+    crust-price-pop
+    0.35s
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =========================================================
+   LOADING DOTS
+========================================================= */
+
+@keyframes crust-loading-dot {
+  0%,
+  80%,
+  100% {
+    transform: scale(0.65);
+    opacity: 0.45;
+  }
+
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.crust-loading-dot {
+  animation:
+    crust-loading-dot
+    1.2s
+    infinite
+    ease-in-out;
+}
+
+.crust-loading-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.crust-loading-dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* =========================================================
+   SKELETON
+========================================================= */
+
+@keyframes crust-skeleton {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.crust-skeleton {
+  background: linear-gradient(
+    90deg,
+    #f3e8dc 20%,
+    #fff8ed 40%,
+    #f3e8dc 60%
+  );
+
+  background-size: 200% 100%;
+
+  animation:
+    crust-skeleton
+    1.5s
+    linear
+    infinite;
+}
+
+/* =========================================================
+   GLOWING BORDER
+========================================================= */
+
+@keyframes crust-border-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0
+      rgba(239, 62, 50, 0);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 4px
+      rgba(239, 62, 50, 0.06);
+  }
+}
+
+.crust-border-glow {
+  animation:
+    crust-border-glow
+    2.8s
+    ease-in-out
+    infinite;
+}
+
+/* =========================================================
+   SOFT ROTATION
+========================================================= */
+
+@keyframes crust-soft-rotate {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+.crust-soft-rotate {
+  animation:
+    crust-soft-rotate
+    5s
+    ease-in-out
+    infinite;
+}
+
+/* =========================================================
+   BOUNCE
+========================================================= */
+
+@keyframes crust-bounce {
+  0% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform: scale(1.14);
+  }
+
+  65% {
+    transform: scale(0.95);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.crust-bounce {
+  animation:
+    crust-bounce
+    0.45s
+    ease-out;
+}
+
+/* =========================================================
+   FADE UP
+========================================================= */
+
+@keyframes crust-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.crust-fade-up {
+  animation:
+    crust-fade-up
+    0.6s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+/* =========================================================
+   FADE IN
+========================================================= */
+
+@keyframes crust-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.crust-fade-in {
+  animation:
+    crust-fade-in
+    0.5s
+    ease
+    both;
+}
+
+/* =========================================================
+   SCALE IN
+========================================================= */
+
+@keyframes crust-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.crust-scale-in {
+  animation:
+    crust-scale-in
+    0.45s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) {
+  .crust-button:hover,
+  .crust-red-glow:hover,
+  .crust-card:hover,
+  .crust-image:hover,
+  .crust-category-active:hover {
+    transform: none;
+  }
+
+  .crust-card:hover::after {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   MOBILE PERFORMANCE
+========================================================= */
+
+@media (max-width: 430px) {
+  .crust-card,
+  .crust-image,
+  .crust-fixed-top,
+  .crust-fixed-bottom {
+    will-change: transform;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================================
+   FINAL OVERFLOW PROTECTION
+========================================================= */
+
+.crust-app-frame,
+.crust-app-frame main,
+.crust-app-frame section,
+.crust-app-frame article {
+  max-width: 100%;
+}
+
+.crust-app-frame {
+  overflow-x: clip;
+}
+
+/* =========================================================
+   NO UNNECESSARY SIDE SPACE
+========================================================= */
+
+.crust-app-frame > * {
+  max-width: 100%;
+}
+
+.crust-app-frame main {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* =========================================================
+   DESKTOP CENTER
+========================================================= */
+
+@media (min-width: 431px) {
+  .crust-fixed-top,
+  .crust-fixed-bottom,
+  .crust-fixed-overlay {
+    width: 430px;
+    max-width: 430px;
+  }
+}
